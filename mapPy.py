@@ -44,15 +44,18 @@ class mapper:
 
         # Use PIL.Image() to open file and find its horiz x vert size
         img = Image.open(imgFileName)
+        img = img.rotate(-90)
 
         # Make a thumbnail version of image file (default: 10% of full size)
         w = scaleFactor * img.width
         h = scaleFactor * img.height
         img.thumbnail([w, h], Image.ANTIALIAS)
 
+
         # Save to an in-memory file with handle 'tn' (thumbnail)
         tn = BytesIO()
         img.save(tn, 'JPEG')
+
         img.close()
 
         # Restore file pointer to start of file
